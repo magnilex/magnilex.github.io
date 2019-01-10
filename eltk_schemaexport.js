@@ -156,8 +156,10 @@ class PlayerSelector extends React.Component {
   }
 
   toRows() {
-    return this.state.fixtures.filter(fixture => fixture.player1 === this.state.selected || fixture.player2 === this.state.selected)
+    var rows = this.state.fixtures.filter(fixture => fixture.player1 === this.state.selected || fixture.player2 === this.state.selected)
       .map(fixture => this.toRow(fixture));
+    rows.unshift(['Subject','Start Date','Start Time','End Date','End Time','All Day Event','Description','Location','Private']);
+    return rows;
   }
 
   toRow(fixture) {
