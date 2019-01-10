@@ -42,7 +42,13 @@ class SchemaExporter extends React.Component {
     options.unshift(e('option', {key: unselectableOption , value: unselectableOption, disabled: true }, 'Välj Grupp'));
     return e(
       'select',
-      { defaultValue: unselectableOption, value: this.state.selected, onChange: this.changeHandler.bind(this), disabled: !groups },
+      {
+        defaultValue: unselectableOption,
+        value: this.state.selected,
+        onChange: this.changeHandler.bind(this),
+        disabled: !groups,
+        class: 'btn-lg dropdown-toggle'
+      },
       options);
   }
 
@@ -123,7 +129,15 @@ class PlayerSelector extends React.Component {
     var fixtures = this.state.fixtures;
     var options = fixtures ? [...this.getPlayers()].sort().map((fixture, index) => e('option', {key: index, value: fixture}, fixture)) : [];
     options.unshift(e('option', {key: unselectableOption , value: unselectableOption, disabled: true }, 'Välj Spelare'));
-    return e('select', { defaultValue: unselectableOption, value: this.state.selected, onChange: this.changeHandler.bind(this), disabled: !fixtures }, options);
+    return e('select',
+      {
+        defaultValue: unselectableOption,
+        value: this.state.selected,
+        onChange: this.changeHandler.bind(this),
+        disabled: !fixtures,
+        class: 'btn-lg dropdown-toggle'
+      },
+       options);
   }
 
   getPlayers() {
