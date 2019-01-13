@@ -4,8 +4,8 @@ const e = React.createElement;
 
 const useCorsProxy = false;
 
-const groupsUrl = 'http://eltk.se/show_page.php?page=senior_gr_5137&operation=oth_grp';
-const groupUrl = 'http://eltk.se/show_page.php?page=senior_gr_5137&action=save&operation=cntrl&kategori=gruppspel_8079&operation=oth_grp&group_id=';
+const groupsUrl = 'https://eltk.se/show_page.php?page=senior_gr_5137&operation=oth_grp';
+const groupUrl = 'https://eltk.se/show_page.php?page=senior_gr_5137&action=save&operation=cntrl&kategori=gruppspel_8079&operation=oth_grp&group_id=';
 
 const dateFormat = 'MM/DD/YYYY';
 const timeFormat = 'hh:mm a';
