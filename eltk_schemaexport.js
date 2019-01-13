@@ -2,6 +2,8 @@
 
 const e = React.createElement;
 
+const useCorsProxy = false;
+
 const groupsUrl = 'http://eltk.se/show_page.php?page=senior_gr_5137&operation=oth_grp';
 const groupUrl = 'http://eltk.se/show_page.php?page=senior_gr_5137&action=save&operation=cntrl&kategori=gruppspel_8079&operation=oth_grp&group_id=';
 
@@ -54,7 +56,7 @@ class SchemaExporter extends React.Component {
 
   loadGroups() {
     this.setState({ loading: true });
-    return getWithCORS(groupsUrl)
+    return get(groupsUrl)
       .then(response => this.setState({ groups: this.parseGroups(response.data), loading: false }))
       .catch(error => toggleAlert(error.message))
   }
@@ -83,7 +85,7 @@ class PlayerSelector extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.props.selectedGroup && this.props.selectedGroup !== prevProps.selectedGroup) {
       this.setState({ loading: true, selected: unselectableOption, fixtures: null });
-      getWithCORS(groupUrl + this.props.selectedGroup)
+      get(groupUrl + this.props.selectedGroup)
         .then(response => this.setState({ fixtures: this.parseFixtures(response.data), loading: false }))
         .catch(error => toggleAlert(error.message))
     }
@@ -226,8 +228,8 @@ function toggleAlert(message) {
   alertTextContainer.innerHTML = message;
 }
 
-function getWithCORS(url) {
-  return axios.get('https://cors-anywhere.herokuapp.com/' + url);
+function get(url) {
+  return axios.get((useCorsProxy ? 'https://cors-anywhere.herokuapp.com/' : '') + url);
 }
 
 function withoutImgTags(html) {
